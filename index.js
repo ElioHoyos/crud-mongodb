@@ -21,6 +21,13 @@ app.get('/productos', async(req, res) => {
     res.json(productos);
 });
 
+//Post - Crear un nuevo producto
+app.post('/productos',async(req,res) => {
+    const nuevo = new Producto(req.body);
+    await nuevo.save();
+    res.status(201).json(nuevo);
+});
+
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
 })
